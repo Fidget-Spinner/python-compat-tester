@@ -1,0 +1,2 @@
+jaraco-classes==3.4.0
+more-itertools==10.8.0

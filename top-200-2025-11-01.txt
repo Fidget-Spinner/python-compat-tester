@@ -247,3 +247,4 @@ google-cloud-secret-manager
 executing
 grpc-google-iam-v1
 cachecontrol
+sentry-sdk

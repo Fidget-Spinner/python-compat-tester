@@ -1,0 +1,2 @@
+aiosignal==1.4.0
+frozenlist==1.8.0

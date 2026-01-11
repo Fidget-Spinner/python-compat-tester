@@ -2,6 +2,8 @@ import sys
 import os
 import subprocess
 
+FREEZE = True
+
 def main(python):
     with open("./top-200-2025-11-01.txt") as fp:
         succeeded = []
@@ -14,13 +16,17 @@ def main(python):
             retcode = os.system(f"uv pip install --compile-bytecode {package}")
             if retcode == 0:
                 succeeded.append(package)
+                if FREEZE:
+                    os.system(f"uv pip freeze > ./requirements/{package}.txt")
             else:
                 failed.append(package)
-            if idx == 25:
-                break
-        # print(succeeded)
-        print(failed)
+        with open(f"{python}.txt", "w") as fp:
+            fp.write(f"{len(succeeded)}\n")
+            fp.write(f"{succeeded}\n")
+            fp.write(f"{len(failed)}\n")
+            fp.write(f"{failed}\n")
 
 if __name__ == "__main__":
+    main("cpython-3.14.2-linux-x86_64-gnu")
     # main("pypy-3.11.13-linux-x86_64-gnu")
-    main("graalpy-3.12.0-linux-x86_64-gnu")
+    # main("graalpy-3.12.0-linux-x86_64-gnu")

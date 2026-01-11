@@ -1,0 +1,13 @@
+certifi==2026.1.4
+charset-normalizer==3.4.4
+events==0.5
+grpcio==1.76.0
+idna==3.11
+opensearch-protobufs==0.19.0
+opensearch-py==3.1.0
+protobuf==6.33.3
+python-dateutil==2.9.0.post0
+requests==2.32.5
+six==1.17.0
+typing-extensions==4.15.0
+urllib3==2.6.3

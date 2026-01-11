@@ -1,0 +1,2 @@
+googleapis-common-protos==1.72.0
+protobuf==6.33.3

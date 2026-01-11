@@ -1,0 +1,3 @@
+anyio==4.12.1
+idna==3.11
+starlette==0.51.0

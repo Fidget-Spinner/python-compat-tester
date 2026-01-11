@@ -1,0 +1,10 @@
+cffi==2.0.0
+cryptography==46.0.3
+jaraco-classes==3.4.0
+jaraco-context==6.0.2
+jaraco-functools==4.4.0
+jeepney==0.9.0
+keyring==25.7.0
+more-itertools==10.8.0
+pycparser==2.23
+secretstorage==3.5.0
