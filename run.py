@@ -4,7 +4,8 @@ import subprocess
 
 FREEZE = False
 
-def main(python):
+def main(python, jit=False):
+    jit_str = "PYTHON_JIT=1" if jit else ""
     with open("./top-200-2025-11-01.txt") as fp:
         succeeded = []
         failed = []
@@ -13,7 +14,7 @@ def main(python):
             print(f"Installing {idx}: {package}")
             os.system("rm -rf .venv")
             os.system(f"uv venv --python {python}")
-            retcode = os.system(f"PYTHON_JIT=1 uv pip install --compile-bytecode {package}")
+            retcode = os.system(f"{jit_str} uv pip install --compile-bytecode -r ./requirements/{package}.txt")
             if retcode == 0:
                 succeeded.append(package)
                 if FREEZE:
@@ -27,6 +28,12 @@ def main(python):
             fp.write(f"{failed}\n")
 
 if __name__ == "__main__":
+    # Baseline:
     main("cpython-3.14.2-linux-x86_64-gnu")
+    # All DSL-assisted optimizations on:
+
+    # PyPy:
     # main("pypy-3.11.13-linux-x86_64-gnu")
+
+    # GraalPy:
     # main("graalpy-3.12.0-linux-x86_64-gnu")
