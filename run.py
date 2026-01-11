@@ -14,7 +14,7 @@ def main(python, jit=False):
             print(f"Installing {idx}: {package}")
             os.system("rm -rf .venv")
             os.system(f"uv venv --python {python}")
-            retcode = os.system(f"{jit_str} uv pip install --compile-bytecode -r ./requirements/{package}.txt")
+            retcode = os.system(f"{jit_str} uv pip install -r ./requirements/{package}.txt")
             if retcode == 0:
                 succeeded.append(package)
                 if FREEZE:
