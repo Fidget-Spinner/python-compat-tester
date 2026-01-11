@@ -6,7 +6,7 @@ FREEZE = False
 
 def main(python, jit=False):
     jit_str = "PYTHON_JIT=1" if jit else ""
-    with open("./top-200-2025-11-01.txt") as fp:
+    with open("./top-300-2025-11-01.txt") as fp:
         succeeded = []
         failed = []
         for idx, line in enumerate(fp):
@@ -14,7 +14,10 @@ def main(python, jit=False):
             print(f"Installing {idx}: {package}")
             os.system("rm -rf .venv")
             os.system(f"uv venv --python {python}")
-            retcode = os.system(f"{jit_str} uv pip install -r ./requirements/{package}.txt")
+            if FREEZE:
+                retcode = os.system(f"{jit_str} uv pip install {package}")
+            else:
+                retcode = os.system(f"{jit_str} uv pip install -r ./requirements/{package}.txt")
             if retcode == 0:
                 succeeded.append(package)
                 if FREEZE:
@@ -29,6 +32,7 @@ def main(python, jit=False):
 
 if __name__ == "__main__":
     # Baseline (CPython compiled without DSL-assisted optimizations):
+    main("cpython-3.14.2-linux-x86_64-gnu")
 
     # All DSL-assisted optimizations on:
 
