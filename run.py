@@ -28,8 +28,8 @@ def main(python, jit=False):
             fp.write(f"{failed}\n")
 
 if __name__ == "__main__":
-    # Baseline:
-    main("cpython-3.14.2-linux-x86_64-gnu")
+    # Baseline (CPython compiled without DSL-assisted optimizations):
+
     # All DSL-assisted optimizations on:
 
     # PyPy:
