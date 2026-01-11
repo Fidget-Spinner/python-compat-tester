@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 
-FREEZE = True
+FREEZE = False
 
 def main(python):
     with open("./top-200-2025-11-01.txt") as fp:
@@ -13,7 +13,7 @@ def main(python):
             print(f"Installing {idx}: {package}")
             os.system("rm -rf .venv")
             os.system(f"uv venv --python {python}")
-            retcode = os.system(f"uv pip install --compile-bytecode {package}")
+            retcode = os.system(f"PYTHON_JIT=1 uv pip install --compile-bytecode {package}")
             if retcode == 0:
                 succeeded.append(package)
                 if FREEZE:
