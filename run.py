@@ -31,13 +31,11 @@ def main(python, jit=False):
             fp.write(f"{failed}\n")
 
 if __name__ == "__main__":
-    # Baseline (CPython compiled without DSL-assisted optimizations):
-    main("cpython-3.14.2-linux-x86_64-gnu")
-
-    # All DSL-assisted optimizations on:
+    # Baseline: CPython compiled with all DSL-assisted optimizations on.
+    main("cpython-3.14.2-linux-x86_64-gnu", jit=True)
 
     # PyPy:
-    # main("pypy-3.11.13-linux-x86_64-gnu")
+    main("pypy-3.11.13-linux-x86_64-gnu")
 
     # GraalPy:
-    # main("graalpy-3.12.0-linux-x86_64-gnu")
+    main("graalpy-3.12.0-linux-x86_64-gnu")
